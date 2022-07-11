@@ -1,7 +1,7 @@
 # Alura Curso JavaScript Avancado
 
  ### Conhecendo o Browser e padrões de projeto
- Construir uma pagina com cadastro de negociações da bolsa de valores.
+ Construindo uma lógica em `JS` para uma pagina de negociação da bolsa de valores.
 
  ## O projeto do curso
 
