@@ -7,6 +7,9 @@ class NegociacaoController {
         this._infoValor = $('#valor')
 
         this._listaDeNegociacoes = new ListaDeNegociacao()
+        this._tabela = new NegociacaoViews($('#tabelaNegociacao'))
+
+        this._tabela.rederizaTabela(this._listaDeNegociacoes)
     }
 
     novaNegociacao (e) {
@@ -14,8 +17,8 @@ class NegociacaoController {
 
         this._listaDeNegociacoes.adicionaNegociacao(this._criaNegociacao())
         LimpaHelper.limpaCampoDeNegociacao(this._infoData, this._infoQuantidade, this._infoValor)
+        this._tabela.rederizaTabela(this._listaDeNegociacoes)
 
-        console.log(this._listaDeNegociacoes.listaDeNegociacao)
     }
 
     _criaNegociacao () {
