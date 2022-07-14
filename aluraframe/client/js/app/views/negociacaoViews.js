@@ -1,9 +1,10 @@
-class NegociacaoViews {
+class NegociacaoViews extends Views {
+
     constructor (elemento) {
-        this._elemento = elemento
+        super(elemento)
     }
 
-    _criaTabelaDeNegociacao (info) {
+    criaElemento (info) {
         return `
             <table class="table table-hover table-bordered">
                 <thead>
@@ -35,9 +36,4 @@ class NegociacaoViews {
             </table>
         `
     }
-
-    rederizaTabela(infos) {
-        this._elemento.innerHTML = this._criaTabelaDeNegociacao(infos)
-    }
-
 }
