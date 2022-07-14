@@ -16,17 +16,21 @@ class NegociacaoViews {
                 </thead>
                 <tbody>
                     ${
-                        info.listaDeNegociacao.map(negociacao => {`
+                        info.listaDeNegociacao.map(negociacao => `
                             <tr>
                                 <td>${DataHelper.dataFormatada(negociacao.data)}</td>
                                 <td>${negociacao.quantidade}</td>
                                 <td>${negociacao.valor}</td>
                                 <td>${negociacao.volume}</td>
                             </tr>
-                        `}).join('')
+                        `).join('')
                     }
-                </tbody>
-                <tfoot>
+                </tbody>  
+                </tfoot>
+                    <td colspan="3"></td>
+                    <td>
+                        ${info.listaDeNegociacao.reduce((acumulador, negociacao) => acumulador += negociacao.volume, 0.0)}
+                    </td>
                 </tfoot>
             </table>
         `
