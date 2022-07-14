@@ -10,5 +10,8 @@ export default class ListaDeNegociacao {
     get listaDeNegociacao() {
         return [].concat(this._listaDeNegociacao)
     }
-    
+
+    deleta () {
+        return this._listaDeNegociacao = []
+    }
 }

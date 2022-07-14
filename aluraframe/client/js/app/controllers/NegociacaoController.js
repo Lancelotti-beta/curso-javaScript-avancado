@@ -42,4 +42,12 @@ export default class NegociacaoController {
             this._infoValor.value
         )
     }
+
+    apagarNegociacoes () {
+        this._listaDeNegociacoes.deleta()
+        this._tabela.renderiza(this._listaDeNegociacoes)
+
+        this._texto.criaMensagem = `As negociação foram com deletadas Sucesso!`
+        this._paragrafo.renderiza(this._texto)
+    }
 }
