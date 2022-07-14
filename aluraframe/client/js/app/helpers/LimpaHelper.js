@@ -1,4 +1,4 @@
-class LimpaHelper {
+export default class LimpaHelper {
     constructor () {
         throw new Error ('Class LimpaHelper não pode ser instanciada!')
     }

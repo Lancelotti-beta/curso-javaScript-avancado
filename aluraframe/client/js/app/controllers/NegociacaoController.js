@@ -1,4 +1,12 @@
-class NegociacaoController {
+import Negociacao from "../models/Negociacao.js";
+import ListaDeNegociacao from "../models/ListaDeNegociacao.js";
+import Mensagem from "../models/Mensagem.js";
+import DataHelper from "../helpers/DataHelper.js";
+import LimpaHelper from "../helpers/LimpaHelper.js";
+import MensagemViews from "../views/MensagemViews.js";
+import NegociacaoViews from "../views/negociacaoViews.js";
+
+export default class NegociacaoController {
 
     constructor () {
         const $ = document.querySelector.bind(document)

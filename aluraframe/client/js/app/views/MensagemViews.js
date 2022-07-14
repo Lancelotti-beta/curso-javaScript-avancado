@@ -1,4 +1,6 @@
-class MensagemViews extends Views {
+import Views from "./Views.js"
+
+export default class MensagemViews extends Views {
 
     constructor (elemento) {
         super(elemento)

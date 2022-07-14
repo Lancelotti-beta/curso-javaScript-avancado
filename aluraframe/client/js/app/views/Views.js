@@ -1,4 +1,4 @@
-class Views {
+export default class Views {
 
     constructor (elemento) {
         this._elemento = elemento
