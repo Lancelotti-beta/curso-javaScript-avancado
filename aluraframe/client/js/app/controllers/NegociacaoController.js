@@ -14,7 +14,9 @@ export default class NegociacaoController {
         this._infoQuantidade = $('#quantidade')
         this._infoValor = $('#valor')
 
-        this._listaDeNegociacoes = new ListaDeNegociacao()
+        this._listaDeNegociacoes = new ListaDeNegociacao(estanciListaNegocicao =>
+            this._tabela.renderiza(estanciListaNegocicao)
+        )
 
         this._tabela = new NegociacaoViews($('#tabelaNegociacao'))
         this._tabela.renderiza(this._listaDeNegociacoes)
@@ -27,7 +29,6 @@ export default class NegociacaoController {
     novaNegociacao (e) {
         e.preventDefault()
         this._listaDeNegociacoes.adicionaNegociacao(this._criaNegociacao())
-        this._tabela.renderiza(this._listaDeNegociacoes)
 
         this._texto.criaMensagem = `Negociação adicionada com Sucesso!`
         this._paragrafo.renderiza(this._texto)
@@ -45,7 +46,6 @@ export default class NegociacaoController {
 
     apagarNegociacoes () {
         this._listaDeNegociacoes.deleta()
-        this._tabela.renderiza(this._listaDeNegociacoes)
 
         this._texto.criaMensagem = `As negociação foram com deletadas Sucesso!`
         this._paragrafo.renderiza(this._texto)
