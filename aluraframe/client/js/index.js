@@ -6,3 +6,4 @@ const negociacao = new NegociacaoController();
 
 formulario.addEventListener('submit', e => negociacao.novaNegociacao(e))
 botaoApagar.addEventListener('click', e => negociacao.apagarNegociacoes())
+

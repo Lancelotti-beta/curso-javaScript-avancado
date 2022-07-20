@@ -14,9 +14,27 @@ export default class NegociacaoController {
         this._infoQuantidade = $('#quantidade')
         this._infoValor = $('#valor')
 
-        this._listaDeNegociacoes = new ListaDeNegociacao(estanciListaNegocicao =>
-            this._tabela.renderiza(estanciListaNegocicao)
-        )
+        let self = this
+        this._listaDeNegociacoes  = new Proxy(new ListaDeNegociacao(), {
+            get(target, props, recevier) {
+                if((['adicionaNegociacao','deleta'].includes(props)) && ( typeof(target[props]) === typeof(Function))) {
+                    return function() {
+                        Reflect.apply(target[props], target, arguments)
+                        self._tabela.renderiza(target)
+                    }
+                }
+        
+                return Reflect.get(target, props, recevier)
+            }
+        })
+
+        /*
+            //Codigo anterior, sem Proxy
+            this._listaDeNegociacoes = new ListaDeNegociacao(estanciListaNegocicao =>
+                this._tabela.renderiza(estanciListaNegocicao)
+            )
+
+        */
 
         this._tabela = new NegociacaoViews($('#tabelaNegociacao'))
         this._tabela.renderiza(this._listaDeNegociacoes)
