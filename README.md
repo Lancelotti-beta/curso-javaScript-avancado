@@ -24,6 +24,8 @@
  
  A ``arrow functions`` possuem um escopo léxico, enquanto as funções padrões têm um escopo dinâmico. Isto significa que, se temos uma função em JavaScript que varia de acordo com o contexto no qual é chamada, o ``this`` léxico de uma arrow function manterá o mesmo ``this`` em todas as chamadas da função. 
 
+ - Usando Requisição AJAX para atualizar a lista via ``Server Local``
+ - ``erro frist`` e ``callback``
 
 
 > Em construção . .  .

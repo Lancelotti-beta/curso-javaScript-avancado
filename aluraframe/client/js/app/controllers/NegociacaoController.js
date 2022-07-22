@@ -6,6 +6,7 @@ import DataHelper from "../helpers/DataHelper.js";
 import LimpaHelper from "../helpers/LimpaHelper.js";
 import MensagemViews from "../views/MensagemViews.js";
 import NegociacaoViews from "../views/NegociacaoViews.js";
+import NegociacaoSevice from "../services/NegocicaoService.js";
 
 export default class NegociacaoController {
 
@@ -41,6 +42,22 @@ export default class NegociacaoController {
             this._infoQuantidade.value,
             this._infoValor.value
         )
+    }
+
+    importaNegociacao() {
+        const negociacoesDaSemana = new NegociacaoSevice()
+        
+        negociacoesDaSemana.obtemNegociacaoDaSemana((erro, elemento) => {
+            if(erro) {
+                this._texto.criaMensagem = `${erro}`
+                return
+            }
+
+            elemento.forEach(element =>
+                this._listaDeNegociacoes.adicionaNegociacao(element)
+            )
+            this._texto.criaMensagem = `Negociações atualizadas com Sucesso!`
+        })
     }
 
     apagarNegociacoes () {
