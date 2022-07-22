@@ -16,11 +16,14 @@
  ### Aprofundando em MVC, padrão Proxy e Factory
 
 ## Modulo II
- - ``function()`` e ``arrow functions``
-
- O ``this`` da ``function()`` é dinâmico, não pertenciando ao controller e sim ao model. Usando a API do JavaScript ``Reflection API``, o ``reflect.apply()``, recebendo o nome do método e o contexto em que queremos executar o this no momento da execução da função para corrigir o this no momento da execução.
- --------
+ - ``function()``
+ 
+ O ``this`` da ``function()`` é dinâmico, não pertencendo ao controller e sim ao model. Usando a API do JavaScript ``Reflection API``, o ``reflect.apply()``, recebendo o nome do método e o contexto em que queremos executar o this no momento da execução da função para corrigir o this no momento da execução.
+ 
+ - ``arrow functions``
+ 
  A ``arrow functions`` possuem um escopo léxico, enquanto as funções padrões têm um escopo dinâmico. Isto significa que, se temos uma função em JavaScript que varia de acordo com o contexto no qual é chamada, o ``this`` léxico de uma arrow function manterá o mesmo ``this`` em todas as chamadas da função. 
+
 
 
 > Em construção . .  .
