@@ -15,16 +15,15 @@ export default class NegociacaoController {
         this._infoQuantidade = $('#quantidade')
         this._infoValor = $('#valor')
 
-        this._tabela = new NegociacaoViews($('#tabelaNegociacao'))
         this._listaDeNegociacoes = new Bind(new ListaDeNegociacao(),
-            this._tabela,
-            ['adicionaNegociacao','deleta']
+            new NegociacaoViews($('#tabelaNegociacao')),
+            'adicionaNegociacao','deleta'
         )
 
-        this._paragrafo = new MensagemViews($('#paragrafo'))
+
         this._texto = new Bind(new Mensagem(), 
-            this._paragrafo,
-            ['mensagem', 'criaMensagem']
+            new MensagemViews($('#paragrafo')),
+            'mensagem', 'criaMensagem'
         )
     }
 
