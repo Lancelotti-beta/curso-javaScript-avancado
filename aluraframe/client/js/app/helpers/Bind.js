@@ -1,12 +1,12 @@
-import ProxyFactory from "../services/ProxyFactory";
+import ProxyFactory from "../services/ProxyFactory.js";
 
 export default class Bind {
-    constructor(objeto, view, props) {
-        let proxy = new ProxyFactory.cria(objeto, props, model => 
+    constructor(model, view, props) {
+        let proxy = ProxyFactory.cria(model, props, model => 
             view.renderiza(model)
         )
 
-        view.renderiza(objeto)
+        view.renderiza(model)
         return proxy
     }
 }
