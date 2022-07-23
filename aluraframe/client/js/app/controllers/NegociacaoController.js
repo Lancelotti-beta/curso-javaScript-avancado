@@ -46,18 +46,22 @@ export default class NegociacaoController {
 
     importaNegociacao() {
         const negociacoesDaSemana = new NegociacaoSevice()
-        
-        negociacoesDaSemana.obtemNegociacaoDaSemana((erro, elemento) => {
-            if(erro) {
-                this._texto.criaMensagem = `${erro}`
-                return
-            }
 
-            elemento.forEach(element =>
-                this._listaDeNegociacoes.adicionaNegociacao(element)
-            )
+        Promise.all([
+            negociacoesDaSemana.obtemNegociacaoDaSemana(),
+            negociacoesDaSemana.obtemNegociacaoDaSemanaPassada(),
+            negociacoesDaSemana.obtemNegociacaoDaSemanaRetrasada()
+        ])
+        .then(element => {
+            element.reduce((arrayObtidoDaPromise, novoArray) => arrayObtidoDaPromise.concat(novoArray) ,[])
+            .forEach(item => {
+                console.log(item)
+                this._listaDeNegociacoes.adicionaNegociacao(item)
+            })
             this._texto.criaMensagem = `Negociações atualizadas com Sucesso!`
         })
+        .catch( erro => this._texto.criaMensagem = `${erro}`)
+
     }
 
     apagarNegociacoes () {
