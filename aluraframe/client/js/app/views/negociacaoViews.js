@@ -33,7 +33,7 @@ export default class NegociacaoViews extends Views {
                 </tfoot>
                     <td colspan="3"></td>
                     <td>
-                        ${info.listaDeNegociacao.reduce((acumulador, negociacao) => acumulador += negociacao.volume, 0.0)}
+                        ${info.volumeTotal}
                     </td>
                 </tfoot>
             </table>
