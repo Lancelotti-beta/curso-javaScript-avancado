@@ -1,7 +1,7 @@
 import NegociacaoController from "./app/controllers/NegociacaoController.js";
 
 const app = express.static()
-app.use("/app", express.static('./app/'))
+app.use("/client", express.static('./client/'))
 
 const negociacao = new NegociacaoController()
 
