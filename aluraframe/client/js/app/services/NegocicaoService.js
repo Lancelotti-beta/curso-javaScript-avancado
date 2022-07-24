@@ -7,49 +7,63 @@ export default class NegociacaoSevice {
         this._http = new HttpService()
     }
 
+    obterNegociacoes () {
+        return Promise.all([
+            this.obtemNegociacaoDaSemana(),
+            this.obtemNegociacaoDaSemanaPassada(),
+            this.obtemNegociacaoDaSemanaRetrasada()
+        ])
+        .then(negociacao => {
+            const negociacaoAtual = negociacao
+                .reduce((arrayObtidoDaPromise, novoArray) => 
+                    arrayObtidoDaPromise.concat(novoArray) ,[]
+                )
+            return negociacaoAtual
+        })
+        .catch(erro => {
+            throw new Error(erro)
+        })
+    }
+
     obtemNegociacaoDaSemana() {
-        return new Promise((resolve ,reject) => {
-            this._http.get('negociacoes/semana')
+        return this._http.get('negociacoes/semana')
                 .then(element => {
-                    resolve(element.map(objeto => 
+                    return element.map(objeto => 
                         new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor)
-                    ))
+                    )
                 })
                 .catch(erro => {
-                    reject(`Não foi possivel atualizar as negociações`)
-                    throw new Error(erro)
+                    console.log(erro)
+                    throw new Error(`Não foi possivel atualizar as negociações `)
                 })
-        })
+
     }
 
     obtemNegociacaoDaSemanaPassada() {
-        return new Promise((resolve ,reject) => {
-            this._http.get('negociacoes/anterior')
+        return this._http.get('negociacoes/anterior')
                 .then(element => {
-                    resolve(element.map(objeto => 
+                    return element.map(objeto => 
                         new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor)
-                    ))
+                    )
                 })
                 .catch(erro => {
-                    reject(`Não foi possivel atualizar as negociações`)
-                    throw new Error(erro)
+                    console.log(erro)
+                    throw new Error(`Não foi possivel atualizar as negociações `)
                 })
-        })
+
     }
 
     obtemNegociacaoDaSemanaRetrasada() {
-        return new Promise((resolve ,reject) => {
-            this._http.get('negociacoes/retrasada')
+        return this._http.get('negociacoes/retrasada')
                 .then(element => {
-                    resolve(element.map(objeto => 
+                    return element.map(objeto => 
                         new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor)
-                    ))
+                    )
                 })
                 .catch(erro => {
-                    reject(`Não foi possivel atualizar as negociações`)
-                    throw new Error(erro)
+                    console.log(erro)
+                    throw new Error(`Não foi possivel atualizar as negociações `)
                 })
-        })
     }
 
 }

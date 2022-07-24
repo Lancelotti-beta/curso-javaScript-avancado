@@ -47,14 +47,9 @@ export default class NegociacaoController {
     importaNegociacao() {
         const negociacoesDaSemana = new NegociacaoSevice()
 
-        Promise.all([
-            negociacoesDaSemana.obtemNegociacaoDaSemana(),
-            negociacoesDaSemana.obtemNegociacaoDaSemanaPassada(),
-            negociacoesDaSemana.obtemNegociacaoDaSemanaRetrasada()
-        ])
+        negociacoesDaSemana.obterNegociacoes()
         .then(element => {
-            element.reduce((arrayObtidoDaPromise, novoArray) => arrayObtidoDaPromise.concat(novoArray) ,[])
-            .forEach(item => {
+            element.forEach(item => {
                 console.log(item)
                 this._listaDeNegociacoes.adicionaNegociacao(item)
             })
