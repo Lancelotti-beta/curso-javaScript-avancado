@@ -16,9 +16,12 @@ export default class NegociacaoController {
         this._infoQuantidade = $('#quantidade')
         this._infoValor = $('#valor')
 
-        this._listaDeNegociacoes = new Bind(new ListaDeNegociacao(),
+        this._ordemAtual = ''
+
+        this._listaDeNegociacoes = new Bind(
+            new ListaDeNegociacao(),
             new NegociacaoViews($('#tabelaNegociacao')),
-            'adicionaNegociacao','deleta'
+            'adicionaNegociacao','deleta', 'ordena', 'inverteOrdem'
         )
 
 
@@ -44,6 +47,12 @@ export default class NegociacaoController {
         )
     }
 
+    apagarNegociacoes () {
+        this._listaDeNegociacoes.deleta()
+        this._texto.criaMensagem = `As negociação foram com deletadas Sucesso!`
+
+    }
+
     importaNegociacao() {
         const negociacoesDaSemana = new NegociacaoSevice()
 
@@ -59,9 +68,16 @@ export default class NegociacaoController {
 
     }
 
-    apagarNegociacoes () {
-        this._listaDeNegociacoes.deleta()
-        this._texto.criaMensagem = `As negociação foram com deletadas Sucesso!`
+    ordena (coluna) {
+        if (this._ordemAtual === coluna) {
+            this._listaDeNegociacoes.inverteOrdem()
+            console.log(this._listaDeNegociacoes.inverteOrdem())
+        } else {
+            this._listaDeNegociacoes.ordena((a, b) => a[coluna] - b[coluna])
+            console.log(this._listaDeNegociacoes.ordena((a, b) => a[coluna] - b[coluna]))
+        }
 
+        return this._ordemAtual = coluna
     }
+
 }

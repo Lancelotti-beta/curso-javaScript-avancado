@@ -15,6 +15,14 @@ export default class ListaDeNegociacao {
         this._listaDeNegociacao = []
     }
     
+    ordena (criterio) {
+        this._listaDeNegociacao.sort(criterio)
+    }
+
+    inverteOrdem () {
+        this._listaDeNegociacao.reverse()
+    }
+
     get listaDeNegociacao() {
         return [].concat(this._listaDeNegociacao)
     }

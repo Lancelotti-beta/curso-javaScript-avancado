@@ -12,10 +12,10 @@ export default class NegociacaoViews extends Views {
             <table class="table table-hover table-bordered">
                 <thead>
                     <tr>
-                        <th>DATA</th>
-                        <th>QUANTIDADE</th>
-                        <th>VALOR</th>
-                        <th>VOLUME</th>
+                        <th data-column-data>DATA</th>
+                        <th data-column-quantidade>QUANTIDADE</th>
+                        <th data-column-valor>VALOR</th>
+                        <th data-column-volume>VOLUME</th>
                     </tr>
                 </thead>
                 <tbody>

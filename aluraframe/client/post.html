@@ -25,47 +25,10 @@
             <input data-input="valor" id="valor" type="number" class="form-control"  min="0.01" step="0.01" value="0.0" required />
         </div>
 
-        <button class="btn btn-primary" type="submit" onclick="sendPost(event)">Enviar dados para servidor</button>
+        <button class="btn btn-primary" type="submit" data-button-enviar>Enviar dados para servidor</button>
     </form>
 
-    <script>
-        const data = document.querySelector('[data-input="data"]')
-        const quantidade = document.querySelector('[data-input="quantidade"]')
-        const valor = document.querySelector('[data-input="valor"]')
-
-        function sendPost(event) {
-            event.preventDefault();
-            console.log("Enviando post");
-
-            //aqui você deve ler os dados do formulário
-            const objeto = {
-                data : data.value,
-                quantidade : quantidade.value,
-                valor : valor.value
-            }
-            const xhr = new XMLHttpRequest()
-            xhr.open('POST', '/negociacoes')
-            xhr.setRequestHeader('Content-type', 'application/json')
-            
-            //construir o json
-            const converteParaObjetoString = JSON.stringify(objeto)
-            
-            //enviar o XMLHttpRequest
-            xhr.onreadystatechange = () => {
-                if(xhr.readyState === 4) {
-                    if (xhr.status === 200) {
-                        console.log(`Enviado com sucesso!`)
-                        //sucesso!
-                    } else {
-                        console.log(`Não foi possivel enviar ${xhr.responseText}`)
-                        //erro!
-                    }
-                }
-
-            }
-            
-            xhr.send(converteParaObjetoString)
-        }
+    <script src="/js/post.js" type="module">   
     </script>
 </body>
 </html>
