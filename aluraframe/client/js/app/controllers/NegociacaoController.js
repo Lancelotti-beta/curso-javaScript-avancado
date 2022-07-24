@@ -15,20 +15,20 @@ export default class NegociacaoController {
         this._infoData = $('#data')
         this._infoQuantidade = $('#quantidade')
         this._infoValor = $('#valor')
-
-        this._ordemAtual = ''
-
+        
         this._listaDeNegociacoes = new Bind(
             new ListaDeNegociacao(),
             new NegociacaoViews($('#tabelaNegociacao')),
             'adicionaNegociacao','deleta', 'ordena', 'inverteOrdem'
         )
-
-
+        
+        
         this._texto = new Bind(new Mensagem(), 
             new MensagemViews($('#paragrafo')),
             'mensagem', 'criaMensagem'
         )
+
+        this._ordemAtual = ''
     }
 
     novaNegociacao (e) {
@@ -57,14 +57,14 @@ export default class NegociacaoController {
         const negociacoesDaSemana = new NegociacaoSevice()
 
         negociacoesDaSemana.obterNegociacoes()
-        .then(element => {
-            element.forEach(item => {
-                console.log(item)
-                this._listaDeNegociacoes.adicionaNegociacao(item)
+            .then(element => {
+                element.forEach(item => {
+                    console.log(item)
+                    this._listaDeNegociacoes.adicionaNegociacao(item)
+                })
+                this._texto.criaMensagem = `Negociações atualizadas com Sucesso!`
             })
-            this._texto.criaMensagem = `Negociações atualizadas com Sucesso!`
-        })
-        .catch( erro => this._texto.criaMensagem = `${erro}`)
+            .catch( erro => this._texto.criaMensagem = `${erro}`)
 
     }
 
@@ -77,7 +77,7 @@ export default class NegociacaoController {
             console.log(this._listaDeNegociacoes.ordena((a, b) => a[coluna] - b[coluna]))
         }
 
-        return this._ordemAtual = coluna
+        this._ordemAtual = coluna
     }
 
 }
